@@ -28,15 +28,17 @@ public class DateService {
     }
     
     public String getDetailedDate(String s) {
-        String format = "MMM dd, yyyy hh:mm a";
+        String format = "MMMMMMMMMM dd, yyyy hh:mm a";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         Calendar cal = Calendar.getInstance();
+        Date date = new Date();
         try {
-            Date date = sdf.parse(s);
+            date = sdf.parse(s);
             cal.setTime(date);
+            date = cal.getTime();
         } catch (ParseException ex) {
             System.out.println("ERROR");
         }
-        return cal.getTime().toString();
+        return sdf.format(date);
     }
 }
