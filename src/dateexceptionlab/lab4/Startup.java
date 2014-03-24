@@ -22,8 +22,9 @@ public class Startup {
             System.out.println(date.getSimpleDate("3/15/2014"));
             System.out.println(date.getDetailedDate("March 15, 2014 2:30 PM"));
             System.out.println(date.getSimpleDate("3-15-2014"));
-        } catch (IllegalArgumentException | ParseException npe) {
+        } catch (IllegalArgumentException | ParseException | DateFormatException npe) {
             System.out.println(npe.getMessage());
+            System.out.println(npe.getClass());
         }
         
     }

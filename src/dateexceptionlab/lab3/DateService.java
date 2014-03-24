@@ -27,7 +27,7 @@ public class DateService {
             }
         } // check that "/" was used as the seperator
         if (count != 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ILLEGAL_FORMAT_ERROR);
         }
         String format = "M/dd/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
