@@ -37,28 +37,28 @@ public class Invoice {
     }
     
     //setters
-    public final void setInvoiceDate(Calendar invoiceDate) throws NullPointerException {
+    public final void setInvoiceDate(Calendar invoiceDate) throws DateFormatException {
         // check for null
         if (invoiceDate == null) {
-            throw new NullPointerException(INVOICEDATE_ERROR);
+            throw new DateFormatException(INVOICEDATE_ERROR);
         }
         this.invoiceDate = invoiceDate;
     }
 
-    public final void setGracePeriod(int gracePeriod) throws IllegalArgumentException {
+    public final void setGracePeriod(int gracePeriod) throws DateFormatException {
         //not sure what the max should be, dont know what the invoice is for
         if (gracePeriod < 0 || gracePeriod > 50) {
-            throw new IllegalArgumentException(GRACEPERIOD_ERROR);
+            throw new DateFormatException(GRACEPERIOD_ERROR);
         }
         this.gracePeriod = gracePeriod;
     }
 
-    public final void setDueDate(Calendar dueDate) throws NullPointerException, IllegalArgumentException {
+    public final void setDueDate(Calendar dueDate) throws DateFormatException {
         //check for null
         if (dueDate == null) {
-            throw new NullPointerException(DUEDATE_NULL_ERROR);
+            throw new DateFormatException(DUEDATE_NULL_ERROR);
         } else if (dueDate.equals(invoiceDate)) { //assumeing there must be a gracePeriod
-            throw new IllegalArgumentException(INVOICE_EQUALS_DUEDATE);
+            throw new DateFormatException(INVOICE_EQUALS_DUEDATE);
         }
         this.dueDate = dueDate;
     }

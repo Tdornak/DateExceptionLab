@@ -13,12 +13,12 @@ public class DateService {
     public static final String STRING_LENGTH_ERROR = "Incorrect Format";
     public static final String ILLEGAL_FORMAT_ERROR = "Must use \"/\" as seperator";
     
-    public String getSimpleDate(String s) throws IllegalArgumentException, ParseException, DateFormatException {
+    public String getSimpleDate(String s) throws DateFormatException {
         if (s == null) { //check null
-            throw new IllegalArgumentException(STRING_NULL);
+            throw new DateFormatException(STRING_NULL);
             //check length
         } else if (s.length() < 9 && s.length() > 10) {
-            throw new IllegalArgumentException(STRING_LENGTH_ERROR);
+            throw new DateFormatException(STRING_LENGTH_ERROR);
         } 
         int count = 0; // look for "/" in the string
         for (int counter = 1; counter < s.length(); counter++) {
@@ -35,17 +35,17 @@ public class DateService {
         try {
             date = sdf.parse(s);
         } catch (ParseException ex) {
-            throw new ParseException(PARSE_EXCEPTION, ex.getErrorOffset());
+            throw new DateFormatException(PARSE_EXCEPTION);
         }
         return sdf.format(date);
     }
     
-    public String getDetailedDate(String s) throws IllegalArgumentException, ParseException {
+    public String getDetailedDate(String s) throws DateFormatException {
         if (s == null) { //check null
-            throw new IllegalArgumentException(STRING_NULL);
+            throw new DateFormatException(STRING_NULL);
             //check length
         } else if (s.length() < 17 && s.length() > 27) {
-            throw new IllegalArgumentException(STRING_LENGTH_ERROR);
+            throw new DateFormatException(STRING_LENGTH_ERROR);
         } 
         String format = "MMMMMMMMM dd, yyyy hh:mm a";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -56,7 +56,7 @@ public class DateService {
             cal.setTime(date);
             date = cal.getTime();
         } catch (ParseException ex) {
-            throw new ParseException(PARSE_EXCEPTION, ex.getErrorOffset());
+            throw new DateFormatException(PARSE_EXCEPTION);
         }
         return sdf.format(date);
     }
